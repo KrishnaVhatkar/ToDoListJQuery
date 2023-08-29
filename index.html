@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List - JQuery</title>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>  
+    <script src="https://kit.fontawesome.com/4f1143ea7b.js" crossorigin="anonymous"></script>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding:0;
+        box-sizing: border-box;
+    }
+    body{
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(45deg,#eee 50%, yellow 50%);
+    }
+    .container{
+        height: 450px;
+        width: 340px;
+        border: none;
+        border-radius: 15px;
+        padding:15px 15px;
+        background-color: azure;
+       display: flex;
+       flex-direction: column;
+       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+       
+    }
+    #input{
+        height: 60px;
+        width: 100%;
+        font-size: larger;
+        padding: 15px 0;
+        border-radius: 15px;
+        border: none;
+        outline: none;
+        background-color:#666 ;
+        padding: 0 15px;
+        color: #fff;
+
+    }
+    #input::placeholder{
+        color: #bbb;
+    }
+    ul{
+        list-style:none;
+        font-size: 20px;
+
+    }
+    ul li{
+        background: #eee;
+        color:#333;
+        height: 40px;
+        border-radius: 5px;
+        margin: 10px 0px;
+        padding: 0px 10px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        
+    }
+    img{
+        height: 20px;
+        position: absolute;
+        cursor: pointer;
+    }
+    .check{
+        right: 60px;
+        color: green;
+    }
+    .trash{
+        right: 20px;
+        color: red;
+    }
+    ul .checked{
+        background: lightgreen;
+        text-decoration: line-through;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <input type="text" id="input" placeholder="Press Enter to add ToDO">
+        <ul></ul>
+
+    </div>
+</body>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#input').change(function(){
+        var input = $(this).val();
+        $('ul').append('<li>'+ input +'<img class="check" src="check-solid.svg"><img  class="trash" src="trash-solid.svg"> </li>');
+        $(this).val('');
+    });
+    $('ul').on('click','.trash',function(){
+        $(this).parent('li').fadeOut(200);
+    });
+    $('ul').on('click','.check',function(){
+        $(this).parent('li').toggleClass('checked');
+    });
+})
+</script>
+</html>
